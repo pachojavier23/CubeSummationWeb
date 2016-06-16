@@ -25,7 +25,7 @@
         </asp:Panel>
         <asp:Panel runat="server">
             
-            <asp:Button runat="server" Text="Ejecutar"/>
+            <asp:Button runat="server" Text="Ejecutar" ID="ExecuteButton" OnClick="ExecuteButton_Click"/>
         </asp:Panel>
     </div>
 </asp:Content>

@@ -6,11 +6,32 @@ using System.Threading.Tasks;
 
 namespace CubeSummationLogic
 {
-    class CubeSummationMain : Constraints
+    public class CubeSummationMain : Constraints
     {
+        private List<TestCase> testCases;
+        private int testSize { get; set; }
+        private string program { get; set; }
+
+        public CubeSummationMain(string program)
+        {
+            this.program = program;
+        }
+
         protected override bool checkConstraints()
         {
-            throw new NotImplementedException();
+            return (TestCasesNumberConstraint());
+        }
+
+        private bool TestCasesNumberConstraint()
+        {
+            return (testSize >= 1 && testSize <= Constraints.T);
+        }
+
+        public string ExecuteCubeSummation()
+        {
+            string result = "result";
+
+            return result;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CubeSummationLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,13 @@ namespace CubeSummationWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        protected void ExecuteButton_Click(object sender, EventArgs e)
+        {
+            CubeSummationMain mainprogram = new CubeSummationMain(this.textAreaInput.Text);
+            this.textAreaOutput.Text = mainprogram.ExecuteCubeSummation();
 
         }
     }
