@@ -8,14 +8,38 @@ namespace CubeSummationLogic
 {
     class Query : Constraints, IQuery
     {
+        /// <summary>
+        /// Valor inicial en x
+        /// </summary>
         int x1 { get; set; }
+        /// <summary>
+        /// Valor final en x
+        /// </summary>
         int x2 { get; set; }
+        /// <summary>
+        /// Valor inicial en y
+        /// </summary>
         int y1 { get; set; }
+        /// <summary>
+        /// Valor final en y
+        /// </summary>
         int y2 { get; set; }
+        /// <summary>
+        /// Valor inicial en z
+        /// </summary>
         int z1 { get; set; }
+        /// <summary>
+        /// Valor final en x
+        /// </summary>
         int z2 { get; set; }
+        /// <summary>
+        /// tamaño de la matriz. Se obtiene por el constructor
+        /// </summary>
         int dimension { get; set; }
 
+        /// <summary>
+        /// Método que ejecuta el query tipo query
+        /// </summary>
         public string executeQuery(int[][][] matrix)
         {
             string resp = "";
@@ -34,6 +58,7 @@ namespace CubeSummationLogic
 
         }
 
+
         public Query(string query, int dimension)
         {
             string[] querysplitted = query.Split(' ');
@@ -46,11 +71,17 @@ namespace CubeSummationLogic
             this.dimension = dimension;
         }
 
+        /// <summary>
+        /// Chequea las restricciones a la instrucción tipo query. X, Y y Z Iniciales deben ser menores a su correspodiente final y estos al tamaño de la dimensión
+        /// </summary>
         protected override bool checkConstraintsAndInitializeIfTrue()
         {
             return checkInterval(x1,x2, 'x') && checkInterval(y1, y2, 'y') && checkInterval(z1, z2, 'z');
         }
 
+        /// <summary>
+        /// X, Y y Z Iniciales deben ser menores a su correspodiente final y estos al tamaño de la dimensión
+        /// </summary>
         private bool checkInterval(int first, int last, char coordinate)
         {
             bool resp = 1 <= first && first <= last && last <= dimension;

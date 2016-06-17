@@ -9,17 +9,38 @@ namespace CubeSummationLogic
 {
     class TestCase : Constraints
     {
+        /// <summary>
+        /// Lista de queries a ejecutar en la prueba
+        /// </summary>
         private List<IQuery> queries;
+        /// <summary>
+        /// Tamaño de la matriz
+        /// </summary>
         public int dimension { get; set; }
+        /// <summary>
+        /// Cantidad de queries a ejecutar
+        /// </summary>
         public int querySize { get; set; }
+        /// <summary>
+        /// instrucción de encabezado de testcase. tiene el formato N M, donde N es la dimensión de la matriz y M la cantidad de queries a ejecutar
+        /// </summary>
         private string dimPlusNumQuery { get; set; }
+        /// <summary>
+        /// Matriz de cubos
+        /// </summary>
         private int[][][] matrix;
 
+        /// <summary>
+        /// Chequea que el formato del encabezado del testcase sea N M, que la dimensión se encuentre entre 1 y 100 y que c
+        /// </summary>
         protected override bool checkConstraintsAndInitializeIfTrue()
         {
             return (validateRegex() && dimensionConstraint() && sizeConstraint());
         }
-
+        /// <summary>
+        /// el formato del encabezado del testcase sea N M
+        /// </summary>
+        /// <returns></returns>
         private bool validateRegex()
         {
             bool resp = Regex.Match(dimPlusNumQuery, Constraints.TC_REGEX).Success;
@@ -36,7 +57,10 @@ namespace CubeSummationLogic
             }
             return resp;
         }
-
+        /// <summary>
+        /// la dimensión se encuentre entre 1 y 100
+        /// </summary>
+        /// <returns></returns>
         private bool dimensionConstraint()
         {
             bool resp = (dimension >= 1 && dimension <= Constraints.N);
@@ -47,7 +71,10 @@ namespace CubeSummationLogic
             }
             return resp;
         }
-
+        /// <summary>
+        /// la dimensión se encuentre entre 1 y 100
+        /// </summary>
+        /// <returns></returns>
         private bool sizeConstraint()
         {
             bool resp = (querySize >= 1 && querySize <= Constraints.M);
@@ -74,7 +101,10 @@ namespace CubeSummationLogic
                 }
             }
         }
-
+        /// <summary>
+        /// Ejecuta uno a uno los queries, devolviendo la respuesta de cada uno
+        /// </summary>
+        /// <returns></returns>
         public string execTest()
         {
             string resp = "";
@@ -82,7 +112,11 @@ namespace CubeSummationLogic
                 resp += query.executeQuery(matrix) + (query is Update ? "" : System.Environment.NewLine);
             return resp;
         }
-
+        /// <summary>
+        /// Agrega un query a la lista
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public bool addQueryToTestCase(string query)
         {
             bool isUpdate = Regex.Match(query, Constraints.UPDATE_REGEX).Success;

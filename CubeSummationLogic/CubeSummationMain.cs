@@ -9,10 +9,29 @@ namespace CubeSummationLogic
 {
     public class CubeSummationMain : Constraints
     {
+        /// <summary>
+        /// Lista de testcases a ejecutar
+        /// </summary>
         private List<TestCase> testCases;
+
+        /// <summary>
+        /// Cantidad de testcases a ejecutar
+        /// </summary>
         private int testSize { get; set; }
+
+        /// <summary>
+        /// Programa digitado por el usuario
+        /// </summary>
         private string program { get; set; }
+
+        /// <summary>
+        /// Separador de líneas digitadas por el usuario
+        /// </summary>
         private const string CHAR_ITERATOR = "|";
+
+        /// <summary>
+        /// programa principal, separado por instrucciones individuales
+        /// </summary>
         private string[] mainProgram;
 
         public CubeSummationMain(string program)
@@ -22,12 +41,18 @@ namespace CubeSummationLogic
             violatedConstraintMessage = "";
             testCases = new List<TestCase>();
         }
-
+        /// <summary>
+        /// Revisa que la primera línea del programa sea un número T equivalente a la cantidad de testcases a ejecutar, que T sea menor a 50 y que el progama tenga una longitud mínima para la ejecución
+        /// </summary>
+        /// <returns></returns>
         protected override bool checkConstraintsAndInitializeIfTrue()
         {
             return (firstLineConstraint() && programLengthConstraint() && TestCasesNumberConstraint());
         }
-
+        /// <summary>
+        /// la primera línea del programa sea un número T equivalente a la cantidad de testcases a ejecutar
+        /// </summary>
+        /// <returns></returns>
         private bool firstLineConstraint()
         {
             bool resp = Regex.Match(mainProgram[0],Constraints.T_REGEX).Success;
@@ -40,7 +65,10 @@ namespace CubeSummationLogic
                 testSize = Convert.ToInt32(mainProgram[0]);
             return resp;
         }
-
+        /// <summary>
+        /// que el progama tenga una longitud mínima para la ejecución
+        /// </summary>
+        /// <returns></returns>
         private bool programLengthConstraint()
         {
             bool resp = mainProgram.Length >= 3;
@@ -51,7 +79,10 @@ namespace CubeSummationLogic
             }
             return resp;
         }
-
+        /// <summary>
+        /// que T sea menor a 50
+        /// </summary>
+        /// <returns></returns>
         private bool TestCasesNumberConstraint()
         {
             bool resp = (testSize >= 1 && testSize <= Constraints.T);
@@ -63,6 +94,10 @@ namespace CubeSummationLogic
             return resp;
         }
 
+        /// <summary>
+        /// Método principal de ejecución
+        /// </summary>
+        /// <returns></returns>
         public string ExecuteCubeSummation()
         {
             string result = "";

@@ -8,6 +8,9 @@ namespace CubeSummationLogic
 {
     interface IQuery
     {
+        /// <summary>
+        /// Firma del método para ejecutar un query de cualquier tipo para una matriz
+        /// </summary>
         string executeQuery(int[][][] matrix);
     }
 }

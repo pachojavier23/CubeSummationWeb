@@ -8,12 +8,31 @@ namespace CubeSummationLogic
 {
     class Update : Constraints, IQuery
     {
+        /// <summary>
+        /// Valor en x
+        /// </summary>
         private int x { get; set; }
+        /// <summary>
+        /// Valor en y
+        /// </summary>
         private int y { get; set; }
+        /// <summary>
+        /// Valor en z
+        /// </summary>
         private int z { get; set; }
+        /// <summary>
+        /// Valor a actualizar en la matriz para la posición x, y, z
+        /// </summary>
         private int w { get; set; }
+        /// <summary>
+        /// Tamaño de la matriz
+        /// </summary>
         private int dimension { get; set; }
 
+
+        /// <summary>
+        /// Método que ejecuta el query tipo update
+        /// </summary>
         public string executeQuery(int[][][] matrix)
         {
             string resp = "";
@@ -36,13 +55,19 @@ namespace CubeSummationLogic
             this.dimension = dimension;
 
         }
-            
 
+
+        /// <summary>
+        /// Chequea las restricciones a la instrucción tipo query. X, Y y Z al tamaño de la dimensión. W debe estár entre -1000000000 y 1000000000
+        /// </summary>
         protected override bool checkConstraintsAndInitializeIfTrue()
         {
             return checkInterval(x, 'x') && checkInterval(y, 'y') && checkInterval(z,'z') && checkMinAndMaxValueofMatrixValue();
         }
-
+        /// <summary>
+        /// W debe estár entre -1000000000 y 1000000000
+        /// </summary>
+        /// <returns></returns>
         private bool checkMinAndMaxValueofMatrixValue()
         {
             bool resp = Constraints.W_MIN <= w && w <= Constraints.W_MAX;
@@ -54,6 +79,12 @@ namespace CubeSummationLogic
             return resp;
         }
 
+        /// <summary>
+        /// X, Y y Z al tamaño de la dimensión.
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="coordinate"></param>
+        /// <returns></returns>
         private bool checkInterval(int first, char coordinate)
         {
             bool resp = 1 <= first && first <= dimension;
