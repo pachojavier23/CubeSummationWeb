@@ -34,9 +34,24 @@ namespace CubeSummationLogic
         protected const int W_MAX = 1000000000;
 
         /// <summary>
+        /// Corresponde al mensaje cuando no se cumple una restricción del algoritmo
+        /// </summary>
+        public string violatedConstraintMessage;
+
+        protected const string QUERY_REGEX = @"^QUERY\s[0-9]*\s[0-9]*\s[0-9]*\s[0-9]*\s[0-9]*\s[0-9]*$";
+
+        protected const string T_REGEX = @"^[0-9]*$";
+
+        protected const string TC_REGEX = @"^[0-9]*\s[0-9]*$";
+
+        protected const string UPDATE_REGEX = @"^UPDATE\s[0-9]*\s[0-9]*\s[0-9]*\s[0-9]*$";
+
+        /// <summary>4
         /// Chequea las restricciones que tiene el algoritmo
         /// </summary>
         /// <returns>true, si se cumplen las restricciones del algoritmo</returns>
-        protected abstract Boolean checkConstraints();
+        protected abstract Boolean checkConstraintsAndInitializeIfTrue();
+
+
     }
 }

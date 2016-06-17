@@ -8,12 +8,12 @@ namespace CubeSummationLogic
 {
     class Update : Constraints, IQuery
     {
-        public string executeQuery()
+        public string executeQuery(ref int[][][] matrix)
         {
             throw new NotImplementedException();
         }
 
-        protected override bool checkConstraints()
+        protected override bool checkConstraintsAndInitializeIfTrue()
         {
             throw new NotImplementedException();
         }
