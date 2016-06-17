@@ -18,7 +18,7 @@ namespace CubeSummationWeb
         protected void ExecuteButton_Click(object sender, EventArgs e)
         {
             CubeSummationMain mainprogram = new CubeSummationMain(this.textAreaInput.Text);
-            this.textAreaOutput.Text = mainprogram.ExecuteCubeSummation();
+            this.textAreaOutput.Text = mainprogram.ExecuteCubeSummation().Replace(@"\r\n\r\n",@"\r\n");
 
         }
     }

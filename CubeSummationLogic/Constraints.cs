@@ -38,7 +38,7 @@ namespace CubeSummationLogic
         /// </summary>
         public string violatedConstraintMessage;
 
-        protected const string QUERY_REGEX = @"^QUERY\s[0-9]*\s[0-9]*\s[0-9]*\s[0-9]*\s[0-9]*\s[0-9]*$";
+        protected const string QUERY_REGEX = @"^QUERY\s[0-9]*\s[0-9]*\s[0-9]*\s[0-9]*\s[0-9]*\s-?[0-9]*$";
 
         protected const string T_REGEX = @"^[0-9]*$";
 

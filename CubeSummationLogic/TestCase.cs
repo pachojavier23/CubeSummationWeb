@@ -79,7 +79,7 @@ namespace CubeSummationLogic
         {
             string resp = "";
             foreach (IQuery query in queries)
-                resp += query.executeQuery(ref matrix) + System.Environment.NewLine;
+                resp += query.executeQuery(matrix) + (query is Update ? "" : System.Environment.NewLine);
             return resp;
         }
 
@@ -99,7 +99,7 @@ namespace CubeSummationLogic
                 if (isQuery)
                     q = new Query(query, dimension);
                 else
-                    q = new Update();
+                    q = new Update(query, dimension);
                 queries.Add(q);
             }
             return resp;

@@ -70,35 +70,37 @@ namespace CubeSummationLogic
                 result = violatedConstraintMessage;
             else
             {
-                int line = 1;
-                for (int i = 1; i <= testSize; i++)
+                int line = 1, i = 1;
+                bool keepExecuting = true;
+                while (keepExecuting && i <= testSize)
                 {
                     TestCase tc = new TestCase(mainProgram[line]);
-                    if (!String.IsNullOrEmpty(tc.violatedConstraintMessage))
-                    {
-                        result = tc.violatedConstraintMessage;
-                        break;
-                    }
-                    if (mainProgram.Length < line + tc.querySize+1)
-                    {
-                        throwErrorNotEnoughQueries();
-                        result = violatedConstraintMessage;
-                        break;
-                    }
+                    bool tcError = !String.IsNullOrEmpty(tc.violatedConstraintMessage);
+                    bool outOfLines = mainProgram.Length < line + tc.querySize + 1;
 
-                    for (int j = 1; j <= tc.querySize;j++)
+                    if (tcError || outOfLines)
+                    { 
+                        throwErrorNotEnoughQueries();
+                        result = tcError ? tc.violatedConstraintMessage:violatedConstraintMessage;
+                        keepExecuting = false;
+                    }
+                    int j = 1;
+                    while(keepExecuting && j <= tc.querySize)
                     {
                         if(!tc.addQueryToTestCase(mainProgram[line + j]))
                         {
                             result = tc.violatedConstraintMessage;
-                            break;
+                            keepExecuting = false;
                         }
+                        j++;
                     }
                     testCases.Add(tc);
                     line += tc.querySize + 1;
+                    i++;
                 }
-                foreach (TestCase tc in testCases)
-                    result += tc.execTest();
+                if (keepExecuting)
+                    foreach (TestCase tc in testCases)
+                        result += tc.execTest();
             }
             return result;
         }

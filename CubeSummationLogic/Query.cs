@@ -16,7 +16,7 @@ namespace CubeSummationLogic
         int z2 { get; set; }
         int dimension { get; set; }
 
-        public string executeQuery(ref int[][][] matrix)
+        public string executeQuery(int[][][] matrix)
         {
             string resp = "";
             if (checkConstraintsAndInitializeIfTrue())
@@ -38,10 +38,10 @@ namespace CubeSummationLogic
         {
             string[] querysplitted = query.Split(' ');
             x1 = Convert.ToInt32(querysplitted[1]);
-            x2 = Convert.ToInt32(querysplitted[2]);
-            y1 = Convert.ToInt32(querysplitted[3]);
-            y2 = Convert.ToInt32(querysplitted[4]);
-            z1 = Convert.ToInt32(querysplitted[5]);
+            y1 = Convert.ToInt32(querysplitted[2]);
+            z1 = Convert.ToInt32(querysplitted[3]);
+            x2 = Convert.ToInt32(querysplitted[4]);
+            y2 = Convert.ToInt32(querysplitted[5]);
             z2 = Convert.ToInt32(querysplitted[6]);
             this.dimension = dimension;
         }
@@ -56,7 +56,7 @@ namespace CubeSummationLogic
             bool resp = 1 <= first && first <= last && last <= dimension;
             if (!resp)
             {
-                string message = "La posición inicial de comparación en la coordenada " + coordinate + " es mayor a la final";
+                string message = "La posición inicial de comparación en la coordenada " + coordinate + " es mayor a la final. La posición inicial del primer cubo es (1,1,1)";
                 violatedConstraintMessage += "- " + (String.IsNullOrEmpty(violatedConstraintMessage) ? message + System.Environment.NewLine : message + System.Environment.NewLine);
             }
             return resp;

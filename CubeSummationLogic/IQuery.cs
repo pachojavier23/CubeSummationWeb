@@ -8,6 +8,6 @@ namespace CubeSummationLogic
 {
     interface IQuery
     {
-        string executeQuery(ref int[][][] matrix);
+        string executeQuery(int[][][] matrix);
     }
 }
